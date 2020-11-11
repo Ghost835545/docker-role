@@ -4,6 +4,7 @@
     name:
       - python-apt
     state: present
+  become_user: root
 
 - name: get the rpm or apt package facts
   package_facts:
