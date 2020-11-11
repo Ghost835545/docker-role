@@ -16,7 +16,6 @@
 - name: Add Docker’s official GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
-  become_user: root
   
 - name: Add Docker repository
   apt_repository:
@@ -34,13 +33,11 @@
   pip:
     name: docker-py
     state: absent
-  become_user: root
   
 - name: Install docker-py
   pip:
     name: docker
     state: present
-  become_user: root
   
 - name: Ensure Docker is started and enabled at boot.
   service:
