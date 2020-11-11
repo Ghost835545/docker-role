@@ -11,33 +11,40 @@
       - python-pip
     state: present
     update_cache: yes
+  become_user: root
 
 - name: Add Docker’s official GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
-
+  become_user: root
+  
 - name: Add Docker repository
   apt_repository:
     repo: "deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
     update_cache: yes
-
+  become_user: root
+  
 - name: Install docker
   apt:
     name: docker-ce={{ docker_version }}
     state: present
-
+  become_user: root
+  
 - name: Install docker-py
   pip:
     name: docker-py
     state: absent
-
+  become_user: root
+  
 - name: Install docker-py
   pip:
     name: docker
     state: present
-
+  become_user: root
+  
 - name: Ensure Docker is started and enabled at boot.
   service:
     name: docker
     state: started
     enabled: yes
+  become_user: root
