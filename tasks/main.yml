@@ -10,6 +10,5 @@
     manager: "apt"
 
 - name: install docker
-  become_user: root
   import_tasks: installation.yml
   when: (ansible_facts['packages']['docker-ce'] is undefined) or (ansible_facts['packages']['docker-ce'][0].version != docker_version)
