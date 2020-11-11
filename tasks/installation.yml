@@ -33,12 +33,12 @@
   pip:
     name: docker-py
     state: absent
-  
+  become_user: root
 - name: Install docker-py
   pip:
     name: docker
     state: present
-  
+  become_user: root
 - name: Ensure Docker is started and enabled at boot.
   service:
     name: docker
