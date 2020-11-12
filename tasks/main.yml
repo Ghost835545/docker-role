@@ -4,10 +4,11 @@
     name:
       - python-apt
     state: present
-
+  become_user: root
 - name: get the rpm or apt package facts
   package_facts:
     manager: "apt"
 - name: install docker
+  become_user: root
   import_tasks: installation.yml
   when: (ansible_facts['packages']['docker-ce'] is undefined) or (ansible_facts['packages']['docker-ce'][0].version != docker_version)
