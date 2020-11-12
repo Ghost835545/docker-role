@@ -1,16 +1,16 @@
 ---
 - name: Install python-apt - need move to deps or pre_tasks
-  become: yes
+  become: no
   apt:
     name:
       - python-apt
     state: present
   
 - name: get the rpm or apt package facts
-  become: yes
+  become: no
   package_facts:
     manager: "apt"
 - name: install docker
-  become: yes
+  become: no
   import_tasks: installation.yml
   when: (ansible_facts['packages']['docker-ce'] is undefined) or (ansible_facts['packages']['docker-ce'][0].version != docker_version)
